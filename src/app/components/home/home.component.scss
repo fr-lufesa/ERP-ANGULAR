@@ -1,0 +1,27 @@
+table{
+    margin: 0;
+}
+
+.filters{
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+th, td {
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f4a261;
+    color: white;
+}
+
+.highlight {
+    font-weight: bold;
+    td{
+        font-size: larger;
+        color: red;
+    }
+}

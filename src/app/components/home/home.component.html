@@ -1,0 +1,265 @@
+<h1 class="mb-5 text-center">Reporte Financiero</h1>
+
+<div class="filters">
+    <!-- <div> -->
+        <!-- <label for="selectAnio">Selecciona un año:</label> -->
+        <select class="form-select" id="selectAnio" [(ngModel)]="anioSeleccionado" (change)="onDateChange()">
+            <option *ngFor="let anio of anios" [value]="anio">{{ anio }}</option>
+        </select>
+    <!-- </div> -->
+
+    <!-- <div> -->
+        <!-- <label for="selectMes">Selecciona un mes:</label> -->
+        <select class="form-select" id="selectMes" [(ngModel)]="mesSeleccionado" (change)="onDateChange()">
+            <option *ngFor="let mes of meses" [value]="mes.valor">{{ mes.nombre }}</option>
+        </select>
+    <!-- </div> -->
+</div>
+
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Concepto</th>
+            <th>Planeado</th>
+            <th>%</th>
+            <th>Real</th>
+            <th>%</th>
+            <th>Dif</th>
+        </tr>
+    </thead>
+    @if(isLoading)
+    {
+        <tbody>
+            <tr *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]"> <!-- Filas de placeholder -->
+              <td class="placeholder-glow"><span class="placeholder col-6"></span></td>
+              <td class="placeholder-glow"><span class="placeholder col-3"></span></td>
+              <td class="placeholder-glow"><span class="placeholder col-3"></span></td>
+              <td class="placeholder-glow"><span class="placeholder col-4"></span></td>
+              <td class="placeholder-glow"><span class="placeholder col-3"></span></td>
+              <td class="placeholder-glow"><span class="placeholder col-4"></span></td>
+            </tr>
+          </tbody>
+    }
+    @else {
+    <tbody>
+        <tr class="highlight    ">
+            <td>PRODUCCIÓN NETA</td>
+            <td>#N/A</td>
+            <td>100.00%</td>
+            <td> {{ produccion.neto }} </td>
+            <td>100.0%</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>PRODUCCIÓN</td>
+            <td>#REF!</td>
+            <td>#REF!</td>
+            <td> {{ produccion.local }}</td>
+            <td>#REF!</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>PRODUCCIÓN CONTRATISTAS</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>{{ produccion.contratistas }}</td>
+            <td>#REF!</td>
+            <td></td>
+        </tr>
+        <tr class="highlight    ">
+            <td>COSTO DIRECTO</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>MATERIALES</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>MANO DE OBRA - NÓMINA</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>IMSS MANO DE OBRA</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>SUBCONTRATO</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>VIATICOS</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>INDIRECTOS DE CAMPO</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>MARGEN BRUTO</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td></td>
+        </tr>
+        <tr class="highlight    ">
+            <td>GASTOS INDIRECTOS OFICINA</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>NOMINA ADMINISTRATIVA</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>SERVICIOS PRIVADOS</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>IMSS INFONAVIT</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>VARIABLES</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>EBIT</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#REF!</td>
+            <td>#REF!</td>
+            <td></td>
+        </tr>
+        <tr class="highlight    ">
+            <td>FINANCIAMIENTO</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#REF!</td>
+            <td>#REF!</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>PRESTAMO</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#REF!</td>
+            <td>#REF!</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>INVERSIÓN</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#REF!</td>
+            <td>#REF!</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>FACTORAJE O VARIABLES</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#REF!</td>
+            <td>#REF!</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>EBT</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#REF!</td>
+            <td>#REF!</td>
+            <td></td>
+        </tr>
+        <tr class="highlight    ">
+            <td>IMPUESTOS</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#REF!</td>
+            <td>#REF!</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>IVA</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#REF!</td>
+            <td>#REF!</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>ISR</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#REF!</td>
+            <td>#REF!</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>OTROS</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#REF!</td>
+            <td>#REF!</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>UTILIDAD NETA</td>
+            <td>#N/A</td>
+            <td>#N/A</td>
+            <td>#REF!</td>
+            <td>#REF!</td>
+            <td></td>
+        </tr>
+    </tbody>
+    }
+</table>

@@ -1,1 +1,60 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  // Color principal
+    --primary-color: rgb(160, 113, 214);
+    --primary-light: rgb(195, 166, 235); // Versión más clara
+    --primary-dark: rgb(121, 74, 179); // Versión más oscura
+
+    // Tonos adicionales
+    --primary-lighter: rgb(220, 200, 245);
+    --primary-darker: rgb(90, 52, 140);
+
+    // Complementarios (basados en la rueda de colores)
+    --complementary: rgb(214, 160, 113); // Opuesto en la rueda de color
+    --analogous-1: rgb(160, 214, 113); // Análogo verde
+    --analogous-2: rgb(113, 160, 214); // Análogo azul
+
+    // Gradientes
+    --gradient-primary: linear-gradient(45deg, --primary, --primary-light);
+    --gradient-dark: linear-gradient(45deg, --primary-dark, --primary-darker);
+
+    // Grises neutros para acompañar la paleta
+    --gray-light: #f5f5f5;
+    --gray-dark: #333;
+
+}
+
+* {    
+    margin: 0;
+}
+
+body{
+    background-color: black;
+}
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+button, input[type=submit]{
+    background-color: var(--terciary-color);
+    color: white;
+    transition: .4s ease;
+}
+
+button, input[type=submit]:hover{
+    background-color: var(--terciary-color-inverted);
+    color: white;
+}
+
+.bg-animation{
+    border-radius: 5px;
+    background: linear-gradient(90deg, red, yellow, green);
+    animation: bg 5s linear infinite;
+}
+
+@keyframes bg{
+    100%{
+        filter: hue-rotate(360deg);
+    }
+}/* You can add global styles to this file, and also import other style files */
