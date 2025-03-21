@@ -1,6 +1,6 @@
-import { ChangeDetectorRef, Component, inject, ViewChild } from '@angular/core';
-import { ProduccionService } from '../../services/produccion.service';
-import { Produccion } from '../../models/produccion.model';
+import { Component, inject } from '@angular/core';
+import { Reporte } from '../../models/reporteFinanciero.model';
+import { ReporteFinancieroService } from '../../services/reportefinanciero.service';
 
 @Component({
   selector: 'app-home',
@@ -10,24 +10,54 @@ import { Produccion } from '../../models/produccion.model';
 })
 export class HomeComponent {
 
-  private readonly produccionService = inject(ProduccionService);
-  private readonly cdr = inject(ChangeDetectorRef);
+  private readonly reporteFinancieroService = inject(ReporteFinancieroService);
 
-  udn: string[] = ["GLOBAL", "INOVA", "GDL", "MTY"]
-  produccion: Produccion = new Produccion();
+  udns!: string[];
+  reporte: Reporte = new Reporte();
   anios: number[] = [];
   meses: { nombre: string, valor: number }[] = [];
+
   anioSeleccionado!: number;
   mesSeleccionado!: number;
+  udnSeleccionado: string = "GLOBAL"
+
   isLoading: boolean = true;
 
   ngOnInit() {
     const fechaActual = new Date();
+
     this.anioSeleccionado = fechaActual.getFullYear();
     this.mesSeleccionado = fechaActual.getMonth() + 1;
 
-     //GENERATE LAST 10 YEARS
-     for (let i = this.anioSeleccionado - 10; i <= this.anioSeleccionado; i++) {
+    this.initializeSelectInfo();
+
+    let mes = this.meses.filter(mes => mes.valor == this.mesSeleccionado)[0];
+
+    this.reporteFinancieroService.getData(this.anioSeleccionado, mes.nombre.toLocaleLowerCase(), this.udnSeleccionado).subscribe(data => {    
+      this.reporte = data;      
+      this.isLoading = false;
+    })
+
+   
+
+  }
+
+  onValueChange() {
+    this.isLoading = true;
+
+    let mes = this.meses.filter(mes => mes.valor == this.mesSeleccionado)[0];
+
+    this.reporteFinancieroService.getData(this.anioSeleccionado, mes.nombre.toLowerCase(), this.udnSeleccionado).subscribe(data => {
+      this.reporte = data;    
+      console.log(data)
+      this.isLoading = false;
+    })
+  }
+
+  initializeSelectInfo() {
+    this.udns = ["GLOBAL", "INOVA", "GDL", "MTY"]
+    //GENERATE LAST 10 YEARS
+    for (let i = this.anioSeleccionado - 10; i <= this.anioSeleccionado; i++) {
       this.anios.push(i);
     }
     //DEFINE MONTHS
@@ -45,25 +75,8 @@ export class HomeComponent {
       { nombre: 'Noviembre', valor: 11 },
       { nombre: 'Diciembre', valor: 12 }
     ];
-
-    let mes = this.meses.filter(mes=> mes.valor == this.mesSeleccionado)[0];
-
-    this.produccionService.getProdData(this.anioSeleccionado, mes.nombre.toLocaleLowerCase()).subscribe(data=>{
-      this.produccion = data;
-      this.isLoading = false;    
-    })
-    
-  }
-
-  onDateChange() {
-    this.isLoading = true;
-    
-    let mes = this.meses.filter(mes=> mes.valor == this.mesSeleccionado)[0];
-    
-    this.produccionService.getProdData(this.anioSeleccionado, mes.nombre.toLowerCase()).subscribe(data=>{
-      this.produccion = data;
-      this.isLoading = false;
-    })
   }
 
 }
+
+

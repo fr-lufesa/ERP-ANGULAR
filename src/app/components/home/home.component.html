@@ -2,17 +2,21 @@
 
 <div class="filters">
     <!-- <div> -->
-        <!-- <label for="selectAnio">Selecciona un año:</label> -->
-        <select class="form-select" id="selectAnio" [(ngModel)]="anioSeleccionado" (change)="onDateChange()">
-            <option *ngFor="let anio of anios" [value]="anio">{{ anio }}</option>
-        </select>
+    <!-- <label for="selectAnio">Selecciona un año:</label> -->
+    <select class="form-select" id="selectAnio" [(ngModel)]="anioSeleccionado" (change)="onValueChange()">
+        <option *ngFor="let anio of anios" [value]="anio">{{ anio }}</option>
+    </select>
     <!-- </div> -->
 
     <!-- <div> -->
-        <!-- <label for="selectMes">Selecciona un mes:</label> -->
-        <select class="form-select" id="selectMes" [(ngModel)]="mesSeleccionado" (change)="onDateChange()">
-            <option *ngFor="let mes of meses" [value]="mes.valor">{{ mes.nombre }}</option>
-        </select>
+    <!-- <label for="selectMes">Selecciona un mes:</label> -->
+    <select class="form-select" id="selectMes" [(ngModel)]="mesSeleccionado" (change)="onValueChange()">
+        <option *ngFor="let mes of meses" [value]="mes.valor">{{ mes.nombre }}</option>
+    </select>
+
+    <select class="form-select" id="selectUDN" [(ngModel)]="udnSeleccionado" (change)="onValueChange()">
+        <option *ngFor="let udn of udns" [value]="udn">{{ udn }}</option>
+    </select>
     <!-- </div> -->
 </div>
 
@@ -31,16 +35,16 @@
     </thead>
     @if(isLoading)
     {
-        <tbody>
-            <tr *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]"> <!-- Filas de placeholder -->
-              <td class="placeholder-glow"><span class="placeholder col-6"></span></td>
-              <td class="placeholder-glow"><span class="placeholder col-3"></span></td>
-              <td class="placeholder-glow"><span class="placeholder col-3"></span></td>
-              <td class="placeholder-glow"><span class="placeholder col-4"></span></td>
-              <td class="placeholder-glow"><span class="placeholder col-3"></span></td>
-              <td class="placeholder-glow"><span class="placeholder col-4"></span></td>
-            </tr>
-          </tbody>
+    <tbody>
+        <tr *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]"> <!-- Filas de placeholder -->
+            <td class="placeholder-glow"><span class="placeholder col-6"></span></td>
+            <td class="placeholder-glow"><span class="placeholder col-3"></span></td>
+            <td class="placeholder-glow"><span class="placeholder col-3"></span></td>
+            <td class="placeholder-glow"><span class="placeholder col-4"></span></td>
+            <td class="placeholder-glow"><span class="placeholder col-3"></span></td>
+            <td class="placeholder-glow"><span class="placeholder col-4"></span></td>
+        </tr>
+    </tbody>
     }
     @else {
     <tbody>
@@ -48,7 +52,7 @@
             <td>PRODUCCIÓN NETA</td>
             <td>#N/A</td>
             <td>100.00%</td>
-            <td> {{ produccion.neto }} </td>
+            <td> {{ reporte.produccion.neto }} </td>
             <td>100.0%</td>
             <td></td>
         </tr>
@@ -56,7 +60,7 @@
             <td>PRODUCCIÓN</td>
             <td>#REF!</td>
             <td>#REF!</td>
-            <td> {{ produccion.local }}</td>
+            <td> {{ reporte.produccion.local }}</td>
             <td>#REF!</td>
             <td></td>
         </tr>
@@ -64,7 +68,7 @@
             <td>PRODUCCIÓN CONTRATISTAS</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td>{{ produccion.contratistas }}</td>
+            <td>{{ reporte.produccion.contratistas }}</td>
             <td>#REF!</td>
             <td></td>
         </tr>
@@ -72,7 +76,7 @@
             <td>COSTO DIRECTO</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td>#N/A</td>
+            <td>{{ reporte.costoDirecto?.neto }}</td>
             <td>#N/A</td>
             <td></td>
         </tr>
@@ -80,7 +84,7 @@
             <td>MATERIALES</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td>#N/A</td>
+            <td>{{ reporte.costoDirecto?.materiales }}</td>
             <td>#N/A</td>
             <td></td>
         </tr>
@@ -88,7 +92,7 @@
             <td>MANO DE OBRA - NÓMINA</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td>#N/A</td>
+            <td> {{ reporte.costoDirecto?.manoObraNomina }} </td>
             <td>#N/A</td>
             <td></td>
         </tr>
@@ -96,7 +100,7 @@
             <td>IMSS MANO DE OBRA</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td>#N/A</td>
+            <td> {{ reporte.costoDirecto?.manoObraImss }} </td>
             <td>#N/A</td>
             <td></td>
         </tr>
@@ -104,7 +108,7 @@
             <td>SUBCONTRATO</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td>#N/A</td>
+            <td> {{ reporte.costoDirecto?.subcontrato }} </td>
             <td>#N/A</td>
             <td></td>
         </tr>
@@ -112,7 +116,7 @@
             <td>VIATICOS</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td>#N/A</td>
+            <td> {{ reporte.costoDirecto?.viaticos }} </td>
             <td>#N/A</td>
             <td></td>
         </tr>
@@ -120,7 +124,7 @@
             <td>INDIRECTOS DE CAMPO</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td>#N/A</td>
+            <td> {{ reporte.costoDirecto?.indirectosCampo }} </td>
             <td>#N/A</td>
             <td></td>
         </tr>
@@ -128,7 +132,7 @@
             <td>MARGEN BRUTO</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td>#N/A</td>
+            <td> {{ reporte.costoDirecto?.margenBruto }} </td>
             <td>#N/A</td>
             <td></td>
         </tr>
@@ -136,7 +140,7 @@
             <td>GASTOS INDIRECTOS OFICINA</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td>#N/A</td>
+            <td> {{reporte.gastosIndirectos?.neto}} </td>
             <td>#N/A</td>
             <td></td>
         </tr>
@@ -144,7 +148,7 @@
             <td>NOMINA ADMINISTRATIVA</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td>#N/A</td>
+            <td> {{ reporte.gastosIndirectos?.nominaAdministrativa }} </td>
             <td>#N/A</td>
             <td></td>
         </tr>
@@ -152,7 +156,7 @@
             <td>SERVICIOS PRIVADOS</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td>#N/A</td>
+            <td> {{ reporte.gastosIndirectos?.serviciosPrivados}} </td>
             <td>#N/A</td>
             <td></td>
         </tr>
@@ -160,7 +164,7 @@
             <td>IMSS INFONAVIT</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td>#N/A</td>
+            <td> {{reporte.gastosIndirectos?.imssInfonavit}} </td>
             <td>#N/A</td>
             <td></td>
         </tr>
@@ -168,7 +172,7 @@
             <td>VARIABLES</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td>#N/A</td>
+            <td> {{reporte.gastosIndirectos?.variables}} </td>
             <td>#N/A</td>
             <td></td>
         </tr>
@@ -176,7 +180,7 @@
             <td>EBIT</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td>#REF!</td>
+            <td> {{reporte.gastosIndirectos?.ebit}} </td>
             <td>#REF!</td>
             <td></td>
         </tr>
@@ -184,7 +188,7 @@
             <td>FINANCIAMIENTO</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td>#REF!</td>
+            <td> {{reporte.financiamiento?.neto}}</td>
             <td>#REF!</td>
             <td></td>
         </tr>
@@ -192,7 +196,7 @@
             <td>PRESTAMO</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td>#REF!</td>
+            <td> {{reporte.financiamiento?.prestamo}}</td>
             <td>#REF!</td>
             <td></td>
         </tr>
@@ -200,7 +204,7 @@
             <td>INVERSIÓN</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td>#REF!</td>
+            <td> {{reporte.financiamiento?.inversion}}</td>
             <td>#REF!</td>
             <td></td>
         </tr>
@@ -208,7 +212,7 @@
             <td>FACTORAJE O VARIABLES</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td>#REF!</td>
+            <td> {{reporte.financiamiento?.factoraje}}</td>
             <td>#REF!</td>
             <td></td>
         </tr>
@@ -216,7 +220,7 @@
             <td>EBT</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td>#REF!</td>
+            <td> {{reporte.financiamiento?.ebt}}</td>
             <td>#REF!</td>
             <td></td>
         </tr>
@@ -224,7 +228,7 @@
             <td>IMPUESTOS</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td>#REF!</td>
+            <td> {{reporte.impuestos?.neto}} </td>
             <td>#REF!</td>
             <td></td>
         </tr>
@@ -232,7 +236,7 @@
             <td>IVA</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td>#REF!</td>
+            <td> {{reporte.impuestos?.iva}} </td>
             <td>#REF!</td>
             <td></td>
         </tr>
@@ -240,7 +244,7 @@
             <td>ISR</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td>#REF!</td>
+            <td> {{reporte.impuestos?.isr}} </td>
             <td>#REF!</td>
             <td></td>
         </tr>
@@ -248,7 +252,7 @@
             <td>OTROS</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td>#REF!</td>
+            <td> {{reporte.impuestos?.otros}} </td>
             <td>#REF!</td>
             <td></td>
         </tr>
@@ -256,7 +260,7 @@
             <td>UTILIDAD NETA</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td>#REF!</td>
+            <td> {{reporte.impuestos?.utilidadNeta}} </td>
             <td>#REF!</td>
             <td></td>
         </tr>
