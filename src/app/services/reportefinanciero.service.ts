@@ -12,7 +12,7 @@ export class ReporteFinancieroService {
 
   getData(year: number, month: string, udn = "default"): Observable<Reporte>
   {
-    let url = `http://127.0.0.1:8000/get_reporte_info/${year}/${month}/${udn}`;    
+    let url = `https://fr-lufesa.github.io/get_reporte_info/${year}/${month}/${udn}`;    
     
     return this.httClient.get<Reporte>(url);
   }
