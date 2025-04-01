@@ -12,7 +12,7 @@ export class ReporteFinancieroService {
 
   getData(year: number, month: string, udn = "default"): Observable<Reporte>
   {
-    let url = `https://klbpjfk0-3000.usw3.devtunnels.ms/get_reporte_info/${year}/${month}/${udn}`;    
+    let url = `https://github.com/fr-lufesa/ERP-ANGULAR.git/get_reporte_info/${year}/${month}/${udn}`;    
     
     return this.httClient.get<Reporte>(url);
   }
