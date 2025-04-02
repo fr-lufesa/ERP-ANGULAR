@@ -13,7 +13,7 @@ export class ReporteFinancieroService {
 
   getData(year: number, month: string, udn = "default"): Observable<Reporte>
   {
-    let url = `${environment.apiUrl}/get_reporte_info/${year}/${month}/${udn}`;    
+    let url = `https://erp-api-ps4c.onrender.com/get_reporte_info/${year}/${month}/${udn}`;    
     
     return this.httClient.get<Reporte>(url);
   }
