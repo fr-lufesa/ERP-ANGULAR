@@ -1,5 +1,6 @@
 export const environment = {
     production: false,
-    apiUrl: 'http://192.168.50.16:8000',
+    // apiUrl: 'http://192.168.50.16:8000', //CASA
+    apiUrl: 'http://192.168.0.174:8000' //OFICINA
     // otras variables...
   };

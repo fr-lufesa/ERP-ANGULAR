@@ -140,7 +140,7 @@
             <td>GASTOS INDIRECTOS OFICINA</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td> {{reporte.gastosIndirectos?.neto}} </td>
+            <td> {{reporte.gastosIndirectos?.neto | currency }} </td>
             <td>#N/A</td>
             <td></td>
         </tr>
@@ -148,7 +148,7 @@
             <td>NOMINA ADMINISTRATIVA</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td> {{ reporte.gastosIndirectos?.nominaAdministrativa }} </td>
+            <td> {{ reporte.gastosIndirectos?.nominaAdministrativa | currency }} </td>
             <td>#N/A</td>
             <td></td>
         </tr>
@@ -156,7 +156,7 @@
             <td>SERVICIOS PRIVADOS</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td> {{ reporte.gastosIndirectos?.serviciosPrivados}} </td>
+            <td> {{ reporte.gastosIndirectos?.serviciosPrivados | currency}} </td>
             <td>#N/A</td>
             <td></td>
         </tr>
@@ -164,7 +164,7 @@
             <td>IMSS INFONAVIT</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td> {{reporte.gastosIndirectos?.imssInfonavit}} </td>
+            <td> {{reporte.gastosIndirectos?.imssInfonavit | currency }} </td>
             <td>#N/A</td>
             <td></td>
         </tr>
@@ -172,7 +172,7 @@
             <td>VARIABLES</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td> {{reporte.gastosIndirectos?.variables}} </td>
+            <td> {{reporte.gastosIndirectos?.variables | currency}} </td>
             <td>#N/A</td>
             <td></td>
         </tr>
@@ -188,7 +188,7 @@
             <td>FINANCIAMIENTO</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td> {{reporte.financiamiento?.neto}}</td>
+            <td> {{reporte.financiamiento?.neto | currency }}</td>
             <td>#REF!</td>
             <td></td>
         </tr>
@@ -196,7 +196,7 @@
             <td>PRESTAMO</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td> {{reporte.financiamiento?.prestamo}}</td>
+            <td> {{reporte.financiamiento?.prestamo | currency}}</td>
             <td>#REF!</td>
             <td></td>
         </tr>
@@ -204,7 +204,7 @@
             <td>INVERSIÓN</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td> {{reporte.financiamiento?.inversion}}</td>
+            <td> {{reporte.financiamiento?.inversion | currency}}</td>
             <td>#REF!</td>
             <td></td>
         </tr>
@@ -212,7 +212,7 @@
             <td>FACTORAJE O VARIABLES</td>
             <td>#N/A</td>
             <td>#N/A</td>
-            <td> {{reporte.financiamiento?.factoraje}}</td>
+            <td> {{reporte.financiamiento?.factoraje | currency}}</td>
             <td>#REF!</td>
             <td></td>
         </tr>
